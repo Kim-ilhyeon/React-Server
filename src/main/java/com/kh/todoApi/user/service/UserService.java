@@ -14,12 +14,12 @@ public class UserService {
 
 	/**
 	 *  아이디 중복체크
-	 *  @param userId 사용자 아이디
+	 *  @param memberId 사용자 아이디
 	 *  @return true : 사용가능, false : 중복(사용 불가)
 	 */
-	public boolean checkId(String userId) {
+	public boolean checkId(String memberId) {
 		
-		int count = userMapper.countByUserId(userId);
+		int count = userMapper.countBymemberId(memberId);
 		
 		
 		return count == 0;
@@ -41,7 +41,7 @@ public class UserService {
 	 *  */
 	public UserDTO selectUser(UserDTO userDTO) {
 		
-		UserDTO loginUser = userMapper.selectByUserIdAndPwd(userDTO);
+		UserDTO loginUser = userMapper.selectBymemberIdAndPwd(userDTO);
 		
 		return loginUser;
 	}

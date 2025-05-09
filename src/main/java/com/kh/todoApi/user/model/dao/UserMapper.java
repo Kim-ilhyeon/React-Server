@@ -17,8 +17,8 @@ public class UserMapper {
 	}
 	
 	// 전달된 아이와 일치하는 개수 조회 (DML, SELECT, 단일 행)
-	public int countByUserId(String UserId) {
-		int result = sqlSession.selectOne("userMapper.countByUserId", UserId);
+	public int countBymemberId(String memberId) {
+		int result = sqlSession.selectOne("userMapper.countBymemberId", memberId);
 		
 		return result;
 	}
@@ -37,9 +37,11 @@ public class UserMapper {
 		return result;
 	}
 
-	public UserDTO selectByUserIdAndPwd(UserDTO userDTO) {
-
-		UserDTO loginUser = sqlSession.selectOne("userMapper.selectByUserIdAndPwd", userDTO);
+	public UserDTO selectBymemberIdAndPwd(UserDTO userDTO) {
+		System.out.println("userMapper 요청까지는 옴");
+		System.out.println("userMapper 에서 전달받은 userDTO : " + userDTO);
+		UserDTO loginUser = sqlSession.selectOne("userMapper.selectBymemberIdAndPwd", userDTO);
+		System.out.println("userMapper에서 DB에 조회한 loginUser" + loginUser);
 		return loginUser;
 	}
 	

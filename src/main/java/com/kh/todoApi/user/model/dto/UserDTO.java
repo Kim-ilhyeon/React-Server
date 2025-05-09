@@ -5,17 +5,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
-@AllArgsConstructor
 @Data
 public class UserDTO {
 
-	private String userId;
-	private String userPwd;
+	private String memberId;
+	private String password;
 	private String nickname;
 	private String email;
-	public UserDTO(String userId, String nickname, String email) {
+	public UserDTO(String memberId, String nickname, String email) {
 		super();
-		this.userId = userId;
+		this.memberId = memberId;
 		this.nickname = nickname;
 		this.email = email;
 	}

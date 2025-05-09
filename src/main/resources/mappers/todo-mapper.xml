@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="todoMapper">
+
+	<select id="selectTodoList" resultType="Todo">
+		SELECT TODO_NO
+			, TODO_CONTENT
+			, TODO_STATUS
+			, CREATE_DATE
+			, MEMBER_ID
+		FROM TB_TODO
+		WHERE TODO_STATUS = 1
+			AND MEMBER_ID = #{memberId}
+	</select>
+	
+	<insert id="insertTodo">
+		INSERT INTO TB_TODO VALUES (SEQ_TODO_NO, #{content}, 1, DEFAULT, #{memberId})
+	</insert>
+	
+	<select id="selectByMaxNo" resultType="Todo">
+		SELECT TODO_NO
+		    , TODO_CONTENT
+		    , TODO_STATUS
+		    , CREATE_DATE
+		    , MEMBER_ID
+		FROM TB_TODO
+		WHERE TODO_NO = (SELECT MAX(TODO_NO)
+		                	FROM TB_TODO
+		                	WHERE MEMBER_ID = #{memberId} AND STATUS = 1)
+	</select>
+
+  
+</mapper>

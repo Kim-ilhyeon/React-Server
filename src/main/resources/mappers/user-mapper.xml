@@ -3,25 +3,25 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="userMapper">
-  <select id="countByUserId" resultType="_int">
+  <select id="countBymemberId" resultType="_int">
     SELECT COUNT(*)
     FROM TB_MEMBER
-    WHERE MEMBER_ID = #{userId}
+    WHERE MEMBER_ID = #{memberId}
   </select>
   
   <insert id="insertUser">
   	INSERT INTO TB_MEMBER (MEMBER_ID, PASSWORD, NICKNAME, EMAIL, STATUS) 
-  				VALUES (#{userId}, #{userPwd}, #{nickname}, #{email}, 'Y')
+  				VALUES (#{memberId}, #{userPwd}, #{nickname}, #{email}, 'Y')
   	<!--
   	INSERT INTO TB_MEMBER
-  					VALUES (#{userId}, #{userPwd}, #{nickname}, #{email},, default 'Y')
+  					VALUES (#{memberId}, #{userPwd}, #{nickname}, #{email},, default 'Y')
   	-->
   </insert>
   
-  <select id="selectByUserIdAndPwd" resultType="UserDTO">
+  <select id="selectBymemberIdAndPwd" resultType="UserDTO">
   	SELECT MEMBER_ID, NICKNAME, EMAIL
   	FROM TB_MEMBER
-  	WHERE MEMBER_ID = #{userId} AND PASSWORD = #{userPwd}
+  	WHERE MEMBER_ID = #{memberId} AND PASSWORD = #{password}
   </select>
   
   

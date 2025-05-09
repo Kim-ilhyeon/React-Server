@@ -103,18 +103,18 @@ public class UserController {
 	/**
 	 * 회원가입 (회원 정보 등록)
 	 * [POST] /user/regist
-	 * @param UserDTO 회원 정보 {userId: 아이디, userPwd: 비밀번호, nickname: 닉네임, email: 이메일}
+	 * @param UserDTO 회원 정보 {memberId: 아이디, userPwd: 비밀번호, nickname: 닉네임, email: 이메일}
 	 * @return "success" : 가입성공, "failed" : 가입 실패
 	 */
 	@PostMapping("/user/regist")
 //	public String insertUser(@RequestBody Map<String, Object> requestBody) {
 	public String insertUser(@RequestBody UserDTO userDTO) {
-//		String userId = (String)requestBody.get("id");
+//		String memberId = (String)requestBody.get("id");
 //		String userPwd = (String)requestBody.get("pwd");
 //		String nickname = (String)requestBody.get("nickname");
 //		String email = (String)requestBody.get("email");
 		
-//		UserDTO newUser = new UserDTO(userId, userPwd, nickname, email);
+//		UserDTO newUser = new UserDTO(memberId, userPwd, nickname, email);
 
 		UserDTO newUser = userDTO;
 		
@@ -131,7 +131,7 @@ public class UserController {
 	/**
 	 * 로그인 (회원 정보 조회)
 	 * [POST] /login
-	 * @param UserDTO {userId: 아이디, userPwd: 비밀번호}
+	 * @param UserDTO {memberId: 아이디, userPwd: 비밀번호}
 	 * @return "success" : 로그인 성공, "failed" : 로그인 실패
 	 * 			로그인 성공 시, 세션에 사용자 정보를 저장
 	 */
@@ -139,7 +139,7 @@ public class UserController {
 	public String selectUser(@RequestBody UserDTO userDTO, HttpSession session) {
 
 		UserDTO loginUser = userService.selectUser(userDTO);
-		
+		System.out.println("userController에서의 loginUser : " + loginUser);
 		if (loginUser != null) {
 			System.out.println("로그인 성공");
 			session.setAttribute("loginUser", loginUser);
